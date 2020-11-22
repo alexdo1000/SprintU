@@ -9,6 +9,10 @@ app.get("/", function(req, res){
     res.render("landing");
 });
 
+app.get("/apple", function(req, res){
+    res.render("landing");
+});
+
 app.listen(3000, function(){
     console.log("SprintU Server has started!");
 });
