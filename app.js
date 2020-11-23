@@ -21,9 +21,11 @@ mongoose.connect(dbUrl, {
     console.log("ERROR: ", err.message);
 })
 
+// Serve static assets from these directories
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + '/node_modules/bulma'));
 
+// Routes
 app.get("/", function(req, res){
     res.render("landing");
 });
