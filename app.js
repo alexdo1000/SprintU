@@ -21,6 +21,9 @@ mongoose.connect(dbUrl, {
     console.log("ERROR: ", err.message);
 })
 
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/node_modules/bulma'));
+
 app.get("/", function(req, res){
     res.render("landing");
 });
@@ -29,6 +32,7 @@ app.get("/apple", function(req, res){
     res.render("landing");
 });
 
-app.listen(3000, function(){
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
     console.log("SprintU Server has started!");
 });
