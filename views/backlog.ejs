@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-</head>
+    <script src="https://kit.fontawesome.com/9908c9251d.js" crossorigin="anonymous"></script>
+  </head>
 <body>
+
     <nav class="navbar is-white" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item"">
@@ -20,12 +22,9 @@
             <a class="navbar-item">
               Home
             </a>
-      
             <a class="navbar-item">
               Projects
             </a>
-      
-          
             <a class="navbar-item">
                 Backlog
             </a>
@@ -53,72 +52,133 @@
         </div>
       </nav>
 
-      <div class="columns">
-          <div class="column is-three-quarters">
 
-            <nav class="panel is-link">
-                <p class="panel-heading">
-                   Backlog
-                </p>
-                <div class="panel-block">
-                <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Search">
-                    <span class="icon is-left">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                    </span>
-                </p>
-                </div>
-            
-                <a class="panel-block is-active">
-             
-                
-                </a>
-                <a class="panel-block">
-            
-                
-                </a>
-                <a class="panel-block">
-             
-                
-                </a>
-                <a class="panel-block">
-                
-                
-                </a>
-                <a class="panel-block">
-               
-            
-                </a>
-                <a class="panel-block">
-             
-                
-                </a>
-                <div class="panel-block">
-                    <button class="button is-link is-outlined is-fullwidth">
-                      Reset search filters
-                    </button>
+      <div>
+        <section class="section is-title-bar is-small">
+          <div class = "level">
+            <div class="level-left">
+              <div class="level-item ">
+                <h1 class="subtitle is-5">Project / <strong>Backlog</strong></h1>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class =  "section is-main-section is-small">
+          <div class = "notification is-link">
+            <div class = "level">
+              <div class = "level-left">
+                  <div class = "level-item">
+                    <b>Backlog</b>
                   </div>
-            </nav>
-            <div class="level-left ">
-            <p class="level-item"><a class="button is-link">Create Kanban</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card has-table">
+            <header class = "card-header">
+              <p class="card-header-title">
+                Tickets
+              </p>
+            </header>
+
+            <div class = "card-content">
+        
+
+              <table class = "table is-fullwidth is-striped is-narrow">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Points</th>
+                    <th>Date Created</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><label class="checkbox"><input type="checkbox"></label></td>
+                    <th>1</th>
+                    <td>Make Function</td>
+                    <td>20</td>
+                    <td>Today</td>
+                    <td>
+                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Delete</span></a>                
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td><label class="checkbox"><input type="checkbox"></label></td>
+                    <th>1</th>
+                    <td>Make Function</td>
+                    <td>20</td>
+                    <td>Today</td>
+                    <td>
+                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Delete</span></a>                
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td><label class="checkbox"><input type="checkbox"></label></td>
+                    <th>1</th>
+                    <td>Make Function</td>
+                    <td>20</td>
+                    <td>Today</td>
+                    <td>
+                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Delete</span></a>                
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td><label class="checkbox"><input type="checkbox"></label></td>
+                    <th>1</th>
+                    <td>Make Function</td>
+                    <td>20</td>
+                    <td>Today</td>
+                    <td>
+                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Delete</span></a>                
+                    </td>
+
+                  </tr>
+                  
+                </tbody>
+                
+
+                
+              </table>
+              <div>
+                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                  <a class="pagination-previous">Previous</a>
+                  <a class="pagination-next">Next page</a>
+                  <ul class="pagination-list">
+                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+                    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+                    <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                    <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+              
+
+          </div>
+
         </div>
-        </div>
-
-        <div class="column">
-            <article class="message is-link">
-                <div class="message-header">
-                  <p>Ticket Details</p>
-                  <button class="delete" aria-label="delete"></button>
-                </div>
-                <div class="message-body">
-                 
-                </div>
-            </article>
-        </div>
-    </div>
-
-
-
+        <div><button class ="button is-link">Create Kanban</button></div>
+      </div>
+        
+      </section>
+      
 
 </body>
 </html>
