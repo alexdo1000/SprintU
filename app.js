@@ -8,12 +8,8 @@ var LocalStrategy = require("passport-local");
 var flash = require("connect-flash");
 var User = require("./models/user");
 var indexRoutes = require("./routes/index");
-app.use("/", indexRoutes);
+// var methodOverride = require("method-override");
 dotenv.config();
-
-app.use(bodyParser.urlencoded({extended:true}));
-app.set("view engine", "ejs");
-app.use(flash());
 
 // Database Setup
 var dbUrl = process.env.DB_URL || "mongodb://localhost/sprintu";
@@ -26,6 +22,11 @@ mongoose.connect(dbUrl, {
 }).catch(err => {
     console.log("ERROR: ", err.message);
 })
+
+app.use(bodyParser.urlencoded({extended:true}));
+app.set("view engine", "ejs");
+// app.use(methodOverride("_method"));
+app.use(flash());
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -65,6 +66,8 @@ app.get("/backlog", function(req, res){
 app.get("/board", function(req, res){
     res.render("board");
 });
+
+app.use("/", indexRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
