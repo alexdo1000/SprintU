@@ -34,6 +34,10 @@ app.get("/apple", function(req, res){
     res.render("landing");
 });
 
+app.get("/board", function(req, res){
+    res.render("board");
+});
+
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
     console.log("SprintU Server has started!");

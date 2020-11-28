@@ -1,0 +1,24 @@
+.story-points {
+    font-weight: bold;
+}
+
+.category {
+    font-weight: bold
+}
+
+.ticket {
+    margin-bottom: 5px;
+    max-height: 200px;
+}
+
+.ticket-title{}
+
+.ticket-user{
+    float: right
+}
+
+.kanban-board{
+    margin: 30px;
+    margin-top: 100px;
+    
+}
