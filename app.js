@@ -22,16 +22,28 @@ mongoose.connect(dbUrl, {
 })
 
 // Serve static assets from these directories
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + '/node_modules/bulma'));
+app.use(express.static(__dirname + "/images"));
+app.use(express.static(__dirname + "/public/stylesheets"));
+// app.use(express.static(__dirname + "/public"));
+// app.use(express.static(__dirname + '/node_modules/bulma'));
 
 // Routes
 app.get("/", function(req, res){
     res.render("landing");
 });
 
-app.get("/apple", function(req, res){
-    res.render("landing");
+app.get("/backlog", function(req, res){
+    res.render("backlog");
+});
+
+app.post("/loginSubmit", function (req, res){
+    console.log(req.body.email_field);
+
+    res.redirect("/");
+});
+
+app.get("/board", function(req, res){
+    res.render("board");
 });
 
 var port = process.env.PORT || 3000;
