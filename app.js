@@ -8,6 +8,8 @@ var LocalStrategy = require("passport-local");
 var flash = require("connect-flash");
 var User = require("./models/user");
 var indexRoutes = require("./routes/index");
+var seedDB = require("./private/seedData")
+
 // var methodOverride = require("method-override");
 dotenv.config();
 
@@ -27,6 +29,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 // app.use(methodOverride("_method"));
 app.use(flash());
+
+// Add sample data to database
+// seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
