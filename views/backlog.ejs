@@ -81,64 +81,28 @@
                     <th>ID</th>
                     <th>Description</th>
                     <th>Points</th>
-                    <th>Date Created</th>
+                    <th>Category</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <!-- <td><label class="checkbox"><input type="checkbox"></label></td> -->
-                    <th>1</th>
-                    <td>Make Function</td>
-                    <td>20</td>
-                    <td>Today</td>
-                    <td>
-                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a> 
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>                
-                    </td>
 
-                  </tr>
-
-                  <tr>
+                  <% tickets.forEach(tickets => { %>
                     
-                    <th>1</th>
-                    <td>Make Function</td>
-                    <td>20</td>
-                    <td>Today</td>
-                    <td>
-                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a> 
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>
-                    </td>
-
-                  </tr>
-                  <tr>
-            
-                    <th>1</th>
-                    <td>Make Function</td>
-                    <td>20</td>
-                    <td>Today</td>
-                    <td>
-                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a> 
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>             
-                    </td>
-
-                  </tr>
-                  <tr>
-  
-                    <th>1</th>
-                    <td>Make Function</td>
-                    <td>20</td>
-                    <td>Today</td>
-                    <td>
-                      <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
-                      <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a> 
-                      <a class="button is-info is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>            
-                    </td>
-
-                  </tr>
+                    <tr>
+                      <th><%= tickets.ticketID %></th>
+                      <td><%= tickets.description %></td>
+                      <td><%= tickets.points %></td>
+                      <td><%= tickets.category %></td>
+                      <td>
+                        <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                        <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a> 
+                        <a class="button is-info is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>            
+                      </td>
+                    </tr>
+                       
+                    
+                  <% }); %> 
                   
                 </tbody>
                 
