@@ -12,6 +12,7 @@ var methodOverride = require("method-override");
 // Requiring models
 var Ticket = require("./models/ticket");
 var User = require("./models/user");
+var Board = require("./models/board");
 
 // Requiring routes
 var indexRoutes = require("./routes/index");
