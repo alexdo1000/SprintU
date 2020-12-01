@@ -72,8 +72,16 @@ app.get("/", function(req, res){
     res.render("register");
 });
 
-app.get("/backlog", function(req, res){
-    res.render("backlog");
+app.get("/backlog", (req,res)=>{
+
+    Ticket.find({},function(err,allTickets){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("backlog",{tickets: allTickets});
+        }
+    });
+    
 });
 
 app.get("/project", function(req, res){
