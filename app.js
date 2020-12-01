@@ -1,3 +1,4 @@
+// Requiring packages
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -6,11 +7,18 @@ var mongoose = require("mongoose");
 var passport    = require("passport");
 var LocalStrategy = require("passport-local");
 var flash = require("connect-flash");
+var methodOverride = require("method-override");
+
+// Requiring models
+var Ticket = require("./models/ticket");
 var User = require("./models/user");
+
+// Requiring routes
 var indexRoutes = require("./routes/index");
+
+// Seed Data
 var seedDB = require("./private/seedData")
 
-// var methodOverride = require("method-override");
 dotenv.config();
 
 // Database Setup
@@ -68,8 +76,21 @@ app.get("/backlog", function(req, res){
     res.render("backlog");
 });
 
-app.get("/board", function(req, res){
-    res.render("board");
+// app.get("/board", function(req, res){
+//     res.render("board");
+// });
+
+app.get("/board", (req, res) => {
+
+    // Get all campgrounds from DB
+    Ticket.find({}, function(err, allTickets){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("board", {tickets: allTickets});
+        }
+    });
+    
 });
 
 app.use("/", indexRoutes);
