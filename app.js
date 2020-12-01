@@ -76,6 +76,10 @@ app.get("/backlog", function(req, res){
     res.render("backlog");
 });
 
+app.get("/project", function(req, res){
+    res.render("project");
+});
+
 // app.get("/board", function(req, res){
 //     res.render("board");
 // });
