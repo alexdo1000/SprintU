@@ -61,6 +61,41 @@
                 </div>
             </div>
 
+            <% tickets.forEach( ticket => { %>
+                <div class="card-content card ticket">
+                    <div class="content ticket-title">
+                        <p class="ticket-title">
+                            <% if (ticket.title.length > 95) { %>
+                                <%= ticket.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= ticket.title %>
+                            <% } %>
+                        </p>
+    
+                        <% if (ticket.category || ticket.points || ticket.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                    <div class="tags has-addons">
+                                        <% if (ticket.category) { %>
+                                            <span class="tag is-rounded is-success category">Category</span>
+                                        <% } %>
+                                        
+                                        <% if (ticket.points) { %>
+                                            <span class="tag is-rounded story-points"> <%= ticket.points %> </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-info is-light ticket-user"> <%= ticket.assignedUser.charAt(0) %> </span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %> 
+
         </div>
 
         <!-- In Progress -->
