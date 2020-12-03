@@ -78,7 +78,7 @@
               <table class = "table is-fullwidth is-striped is-narrow">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Title</th>
                     <th>Description</th>
                     <th>Points</th>
                     <th>Category</th>
@@ -90,14 +90,15 @@
                   <% tickets.forEach(tickets => { %>
                     
                     <tr>
+                      <td><a href="ticket/<%=tickets._id%>"><%= tickets.title%></a></td>
                       <td><%= tickets.description %></td>
                       <td><%= tickets.points %></td>
                       <td><%= tickets.category %></td>
                       <td>
                         <a class="button is-link is-small"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
                           <!-- <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a>  -->
-                          <button>Delete</button>
-                        </form>
+                          <!-- <button>Delete</button>
+                        </form> -->
                         <a class="button is-info is-small"><span class="icon is-small"><i class="fas fa-plus"></i></span><span>Add to Kanban</span></a>            
                       </td>
                     </tr>
@@ -110,24 +111,6 @@
 
                 
               </table>
-              <div>
-                <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                  <a class="pagination-previous">Previous</a>
-                  <a class="pagination-next">Next page</a>
-                  <ul class="pagination-list">
-                    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-                    <li><span class="pagination-ellipsis">&hellip;</span></li>
-                    <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-                    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-                    <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-                    <li><span class="pagination-ellipsis">&hellip;</span></li>
-                    <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-                  </ul>
-                </nav>
-              </div>
-
-              
-
           </div>
 
         </div>

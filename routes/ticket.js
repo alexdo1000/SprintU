@@ -49,10 +49,11 @@ router.get("/newTicket", (req , res) => {
     res.render("ticket/newTicket");
 });
 
-// SHOW - SHOWS MORE INFO ABOUT ONE CAMPGROUND
-router.get("/backlog/:id", async(req, res) => {
+// SHOW - SHOWS INFO ABOUT SPECIFIC TICKET
+router.get("/ticket/:id", async(req, res) => {
     const ticket = await Ticket.findById(req.params.id);
-    res.render("/show",{ticket});
+    res.render("ticket/viewTicket",{ticket});
+
 });
 
 // EDIT Ticket ROUTE
@@ -77,7 +78,7 @@ router.get("/:id/editTicket", (req, res) => {
 // });
 
 // delete ticket
-router.delete("/backlog/:id", async (req, res) => {
+router.delete("/ticket/:id", async (req, res) => {
     const {id} = req.params;
     await Ticket.findByIdAndDelete(id);
     res.redirect('/backlog');
