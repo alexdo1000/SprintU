@@ -2,9 +2,9 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
-var dotenv = require('dotenv');
+var dotenv = require("dotenv");
 var mongoose = require("mongoose");
-var passport    = require("passport");
+var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var flash = require("connect-flash");
 var methodOverride = require("method-override");
@@ -18,7 +18,7 @@ var Board = require("./models/board");
 var indexRoutes = require("./routes/index");
 
 // Seed Data
-var seedDB = require("./private/seedData")
+var seedDB = require("./private/seedData");
 
 dotenv.config();
 
@@ -30,11 +30,11 @@ mongoose.connect(dbUrl, {
     useCreateIndex: true
 }).then(() => {
     console.log("Connected to database");
-}).catch(err => {
+}).catch((err) => {
     console.log("ERROR: ", err.message);
-})
+});
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 // app.use(methodOverride("_method"));
 app.use(flash());
@@ -46,7 +46,7 @@ app.use(flash());
 app.use(require("express-session")({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -65,27 +65,24 @@ app.use((req, res, next) => {
 // Serve static assets from these directories
 app.use(express.static(__dirname + "/images"));
 app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + '/node_modules/bulma'));
-
+app.use(express.static(__dirname + "/node_modules/bulma"));
 
 // Routes
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     res.render("register");
 });
 
-app.get("/backlog", (req,res)=>{
-
-    Ticket.find({},function(err,allTickets){
-        if(err){
+app.get("/backlog", (req, res) => {
+    Ticket.find({}, function (err, allTickets) {
+        if (err) {
             console.log(err);
-        }else{
-            res.render("backlog",{tickets: allTickets});
+        } else {
+            res.render("backlog", { tickets: allTickets });
         }
     });
-    
 });
 
-app.get("/project", function(req, res){
+app.get("/project", function (req, res) {
     res.render("project");
 });
 
@@ -94,22 +91,19 @@ app.get("/project", function(req, res){
 // });
 
 app.get("/board", (req, res) => {
-
     // Get all campgrounds from DB
-    Ticket.find({}, function(err, allTickets){
-        if(err){
+    Ticket.find({}, function (err, allTickets) {
+        if (err) {
             console.log(err);
         } else {
-            res.render("board", {tickets: allTickets});
+            res.render("board", { tickets: allTickets });
         }
     });
-    
 });
 
 app.use("/", indexRoutes);
 
 var port = process.env.PORT || 3000;
-app.listen(port, function(){
+app.listen(port, function () {
     console.log("SprintU Server has started!");
 });
-
