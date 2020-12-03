@@ -59,7 +59,7 @@ router.get("/ticket/:id", async(req, res) => {
 // EDIT Ticket ROUTE
 router.get("/:id/editTicket", (req, res) => {
     Ticket.findById(req.params.id, (err, foundTicket) => {
-        res.render("editTicket", {ticket: foundTicket});
+        res.render("ticket/editTicket", {ticket: foundTicket});
     });
 });
 
