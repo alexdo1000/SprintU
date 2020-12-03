@@ -50,7 +50,7 @@ router.get("/newTicket", (req , res) => {
 });
 
 // SHOW - SHOWS INFO ABOUT SPECIFIC TICKET
-router.get("/ticket/:id", async(req, res) => {
+router.get("/:id", async(req, res) => {
     const ticket = await Ticket.findById(req.params.id);
     res.render("ticket/viewTicket",{ticket});
 
@@ -63,24 +63,24 @@ router.get("/:id/editTicket", (req, res) => {
     });
 });
 
-// // UPDATE CAMPGROUND ROUTE
-// router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
-//     // find and update correct campground
-//     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
-//         if(err){
-//             res.redirect("/campgrounds");
-//         } else {
-//             // redirect somewhere (show page)
-//             res.redirect("/campgrounds/" + req.params.id);
-//         }
-//     });
-//
-// });
+// UPDATE TICKET ROUTE
+router.put("/:id",  (req, res) => {
+    // find and update correct ticket
+    Ticket.findByIdAndUpdate(req.params.id, req.body.ticket, (err, updatedTicket) => {
+        if(err){
+            res.redirect("/:id");
+        } else {
+            // redirect somewhere (show page)
+            res.redirect("/backlog");
+        }
+    });
+
+});
 
 // delete ticket
 router.delete("/ticket/:id", async (req, res) => {
     const {id} = req.params;
-    await Ticket.findByIdAndDelete(id);
+    await Ticket.findByIdAndRemove(id);
     res.redirect('/backlog');
 });
 

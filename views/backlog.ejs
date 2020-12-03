@@ -90,12 +90,12 @@
                   <% tickets.forEach(tickets => { %>
                     
                     <tr>
-                      <td><a href="ticket/<%=tickets._id%>"><%= tickets.title%></a></td>
+                      <td><a href="/ticket/<%=tickets._id%>"><%= tickets.title%></a></td>
                       <td><%= tickets.description %></td>
                       <td><%= tickets.points %></td>
                       <td><%= tickets.category %></td>
                       <td>
-                        <a class="button is-link is-small" href="/<%=tickets._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                        <a class="button is-link is-small" href="/ticket/<%=tickets._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
                           <!-- <a class="button is-danger is-small"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete</span></a>  -->
                           <!-- <button>Delete</button>
                         </form> -->
@@ -114,7 +114,7 @@
           </div>
 
         </div>
-        <div><a href="/newTicket"><button class ="button is-link">Add Ticket</button</a></div>
+        <div><a href="/ticket/newTicket"><button class ="button is-link">Add Ticket</button</a></div>
       </div>
         
       </section>
