@@ -36,7 +36,7 @@ mongoose.connect(dbUrl, {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-// app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));
 app.use(flash());
 
 // Add sample data to database
