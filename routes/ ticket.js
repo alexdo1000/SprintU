@@ -50,16 +50,9 @@ router.get("/new", (req , res) => {
     res.render("campgrounds/new");
 });
 // SHOW - SHOWS MORE INFO ABOUT ONE CAMPGROUND
-router.get("/:id", (req, res) => {
-    // find the campground with the provided ID
-    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
-        if(err) console.log(err);
-        else{
-            console.log(foundCampground);
-            // render show template with that campground
-            res.render("campgrounds/show", {campground:foundCampground});
-        }
-    });
+router.get("/backlog/:id", async(req, res) => {
+    const ticket = await Ticket.findById(req.params.id);
+    res.render("/show",{ticket});
 });
 
 // EDIT CAMPGROUND ROUTE
@@ -83,12 +76,11 @@ router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
 
 });
 
-// DESTROY CAMPGROUND ROUTE
-router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
-    Campground.findByIdAndRemove(req.params.id, (err) => {
-        if(err) res.redirect("/campgrounds");
-        else res.redirect("/campgrounds");
-    });
+// delete ticket
+router.delete("/backlog/:id", async (req, res) => {
+    const {id} = req.params;
+    await Ticket.findByIdAndDelete(id);
+    res.redirect('/backlog');
 });
 
 module.exports = router;
