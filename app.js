@@ -16,6 +16,7 @@ var Board = require("./models/board");
 
 // Requiring routes
 var indexRoutes = require("./routes/index");
+var ticketRoutes = require("./routes/ticket");
 
 // Seed Data
 var seedDB = require("./private/seedData");
@@ -102,6 +103,7 @@ app.get("/board", (req, res) => {
 });
 
 app.use("/", indexRoutes);
+app.use("/", ticketRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

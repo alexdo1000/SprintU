@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 
 // SCHEMA SETUP
 var ticketSchema = new mongoose.Schema({
-    ticketID: String,
     ticketCreator: String,
     title: String,
     category: String,

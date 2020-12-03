@@ -19,7 +19,6 @@ router.get("/", (req, res) => {
 // CREATE - ADD NEW TICKET TO DB
 router.post("/", (req, res) => {
     // get data from form and add to ticket array
-    var ticketID = req.body.ticketID;
     var ticketCreator = req.body.ticketCreator;
     var title = req.body.title;
     var category = req.body.category;
@@ -28,7 +27,7 @@ router.post("/", (req, res) => {
     var assignedUser = req.body.assignedUser;
     var lane = req.body.lane;
     var newTicket = {
-        ticketID:ticketID, ticketCreator:ticketCreator, title:title, category:category,
+        ticketCreator:ticketCreator, title:title, category:category,
         description:description, points:points, assignedUser:assignedUser, lane:lane
     };
 
@@ -45,36 +44,37 @@ router.post("/", (req, res) => {
 
 
 });
-// NEW - SHOW FORM TO CREATE CAMPGROUND
-router.get("/new", (req , res) => {
-    res.render("campgrounds/new");
+// NEW - SHOW FORM TO CREATE Ticket
+router.get("/newTicket", (req , res) => {
+    res.render("ticket/newTicket");
 });
+
 // SHOW - SHOWS MORE INFO ABOUT ONE CAMPGROUND
 router.get("/backlog/:id", async(req, res) => {
     const ticket = await Ticket.findById(req.params.id);
     res.render("/show",{ticket});
 });
 
-// EDIT CAMPGROUND ROUTE
-router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
-    Campground.findById(req.params.id, (err, foundCampground) => {
-        res.render("campgrounds/edit", {campground: foundCampground});
+// EDIT Ticket ROUTE
+router.get("/:id/editTicket", (req, res) => {
+    Ticket.findById(req.params.id, (err, foundTicket) => {
+        res.render("editTicket", {ticket: foundTicket});
     });
 });
 
-// UPDATE CAMPGROUND ROUTE
-router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
-    // find and update correct campground
-    Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
-        if(err){
-            res.redirect("/campgrounds");
-        } else {
-            // redirect somewhere (show page)
-            res.redirect("/campgrounds/" + req.params.id);
-        }
-    });
-
-});
+// // UPDATE CAMPGROUND ROUTE
+// router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
+//     // find and update correct campground
+//     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+//         if(err){
+//             res.redirect("/campgrounds");
+//         } else {
+//             // redirect somewhere (show page)
+//             res.redirect("/campgrounds/" + req.params.id);
+//         }
+//     });
+//
+// });
 
 // delete ticket
 router.delete("/backlog/:id", async (req, res) => {

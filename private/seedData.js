@@ -3,7 +3,6 @@ var Ticket  = require("../models/ticket");
 
 var ticketData = [
     {
-        ticketID: 1,
         ticketCreator: "Alex Do",
         title: "Add board functionality",
         category: "Board",
@@ -13,7 +12,6 @@ var ticketData = [
         lane: "To Do",
     },
     {
-        ticketID: 2,
         ticketCreator: "Ticket Creator",
         title: "Backlog feature",
         category: "Board",
@@ -23,7 +21,6 @@ var ticketData = [
         lane: "In Progress",
     }, 
     {
-        ticketID: 2,
         ticketCreator: "Bob Joe",
         title: "Backlog feature",
         category: "Board",
