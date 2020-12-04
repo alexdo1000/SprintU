@@ -13,10 +13,13 @@ var methodOverride = require("method-override");
 var Ticket = require("./models/ticket");
 var User = require("./models/user");
 var Board = require("./models/board");
+var Project = require("./models/project");
 
 // Requiring routes
 var indexRoutes = require("./routes/index");
 var ticketRoutes = require("./routes/ticket");
+var boardRoutes = require("./routes/board");
+var projectRoutes = require("./routes/project");
 
 // Seed Data
 var seedDB = require("./private/seedData");
