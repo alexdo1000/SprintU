@@ -1,32 +1,48 @@
 <%- include("../partials/header") %>
 
-    <div class="columns project-board">
-        <%projects.forEach( project => {%>
-            <a href="/project/<%= project._id %>"><div class="card-content card project">
-                    <div class="content project-title">
-                        <p class="project-title">
-                            <% if (project.title.length > 95) { %>
-                                <%= project.title.substring(0, 92) + '...' %>
-                            <% } else { %>
-                                <%= project.title %>
-                            <% } %>
-                        </p>
-
-                        <% if (project.assignedUser) { %>
-                            <div class="columns ticket-footer">
-                                <div class="column">
-                                </div>
-                                <!-- Should this be admin instead of assigneduser or nothing -->
-                                <!--
-                                <div class="column is-one-third">
-                                    <% if (ticket.assignedUser) { %>
-                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+                Component
+            </p>
+            <a href="#" class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </a>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <%projects.forEach( project => {%>
+                    <a href="/project/<%= project._id %>"><div class="card-content card project">
+                            <div class="content project-title">
+                                <p class="project-title">
+                                    <% if (project.title.length > 95) { %>
+                                        <%= project.title.substring(0, 92) + '...' %>
+                                    <% } else { %>
+                                        <%= project.title %>
                                     <% } %>
+                                </p>
+                                <div class="columns ticket-footer">
+                                    <span class="icon is-large has-text-info">
+                                              <i class="fas fa-user-friends"></i>
+                                    </span>
+                                    <div class="column is-one-third">
+                                        <% if (project.members.length == 0) { %>
+                                            <span class="tag is-rounded is-link is-light project-member-count">0</span>
+                                        <% } else { %>
+                                            <span class="tag is-rounded is-link is-light project-member-count"><%= project.members.length %></span>
+                                        <%}%>
+                                    </div>
                                 </div>
-                                -->
                             </div>
-                        <% } %>
-                    </div>
-                </div></a>
-        <% }); %>
+                    </div></a>
+                <% }); %>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/project/<%= project._id %>/edit" class="card-footer-item">Edit</a>
+            <a href="/project/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
+        </footer>
     </div>
+

@@ -106,7 +106,7 @@ app.get("/board", middleware.isLoggedIn, (req, res) => {
 
 app.use("/", indexRoutes);
 app.use("/ticket", ticketRoutes);
-app.use("/project", projectRoutes);
+app.use("/projects", projectRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
