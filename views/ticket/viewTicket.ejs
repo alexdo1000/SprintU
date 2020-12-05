@@ -1,15 +1,46 @@
 <%- include("../partials/header") %>
+<div>
+    <section class =  "section is-main-section is-small">
+    
+        <div class="section is-main-section">
+            <div class="card has-table">
+                <header class = "card-header">
+                    <p class="card-header-title">
+                        Ticket Information
+                    </p>
+                </header>
 
-    <h1>Ticket Information</h1>
-    <ul>
-        <li><%=ticket.title%></li>
-        <li><%=ticket.description%></li>
-        <li><%=ticket.points%></li>
-        <li><%=ticket.category%></li>
+                <div class = "card-content">
+                    <table class = "table is-fullwidth is-striped is-narrow">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Points</th>
+                            <th>Category</th>
+                            <th>Assigned User</th>
+                            <th>Action</th>
+                            
+                        </tr>
+                        </thead>
+                        <tbody>
 
-    </ul>
-    <form action="/ticket/<%=ticket._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-</body>
+                            <th><%=ticket.title%></th>
+                            <td><%=ticket.description%></td>
+                            <td><span class="tag is-rounded story-points"> <%= ticket.points %></td>
+                            <td> <span class="tag is-rounded is-link category"><%= ticket.category %></span></td>
+                            <td><span class="tag is-rounded is-info is-light ticket-user"> <%= ticket.assignedUser.charAt(0) %> </span></td>
+                            <td>
+                                <form action="/ticket/<%= ticket._id%>?_method=DELETE" method="POST">
+                                    <button class="button is-danger"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete Ticket</span></a> 
+                                </form>
+                            </td>
+                        </tbody>
+                    </table>
+            </div>
+            <a class="button is-link is-small"href="/backlog">Go Back</a>
+    </section>
+   
+</div>
+
 </html>

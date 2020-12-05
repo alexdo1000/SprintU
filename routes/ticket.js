@@ -78,7 +78,7 @@ router.put("/:id",  (req, res) => {
 });
 
 // delete ticket
-router.delete("/ticket/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     const {id} = req.params;
     await Ticket.findByIdAndRemove(id);
     res.redirect('/backlog');
