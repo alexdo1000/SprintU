@@ -14,7 +14,7 @@
         <div class="card-content">
             <div class="content">
                 <%projects.forEach( project => {%>
-                    <a href="/project/<%= project._id %>"><div class="card-content card project">
+                    <a href="/projects/<%= project._id %>"><div class="card-content card project">
                             <div class="content project-title">
                                 <p class="project-title">
                                     <% if (project.title.length > 95) { %>
@@ -38,8 +38,8 @@
                             </div>
                     </div></a>
                     <footer class="card-footer">
-                        <a href="/project/<%= project._id %>/edit" class="card-footer-item">Edit</a>
-                        <a href="/project/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
+                        <a href="/projects/<%= project._id %>/edit" class="card-footer-item">Edit</a>
+                        <a href="/projects/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
                     </footer>
                 <% }); %>
             </div>

@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
             console.log(err);
         } else {
             // redirect back to project page
-            res.redirect("/project")
+            res.redirect("/projects")
         }
     });
 
@@ -74,7 +74,7 @@ router.put("/:id",  (req, res) => {
             res.redirect("/:id");
         } else {
             // redirect somewhere (show page)
-            res.redirect("/project");
+            res.redirect("/projects");
         }
     });
 
