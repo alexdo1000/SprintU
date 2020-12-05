@@ -37,12 +37,12 @@
                                 </div>
                             </div>
                     </div></a>
+                    <footer class="card-footer">
+                        <a href="/project/<%= project._id %>/edit" class="card-footer-item">Edit</a>
+                        <a href="/project/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
+                    </footer>
                 <% }); %>
             </div>
         </div>
-        <footer class="card-footer">
-            <a href="/project/<%= project._id %>/edit" class="card-footer-item">Edit</a>
-            <a href="/project/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
-        </footer>
     </div>
 
