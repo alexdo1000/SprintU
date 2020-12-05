@@ -38,7 +38,7 @@ router.get("/login", (req, res) => {
 router.post("/login", passport.authenticate("local",
     {
         successRedirect: "/backlog",
-        failureRedirect: "/landing"
+        failureRedirect: "/login"
     }), (req, res) => {
 });
 
