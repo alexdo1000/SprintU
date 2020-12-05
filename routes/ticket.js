@@ -4,7 +4,7 @@ var Ticket = require("../models/ticket");
 var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
 
 // INDEX - SHOW ALL TICKETS
-router.get("/", (req, res) => {
+router.get("/", middleware.isLoggedIn, (req, res) => {
 
     // Get all tickets from DB
     Ticket.find({}, function(err, allTickets){
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
 });
 // CREATE - ADD NEW TICKET TO DB
-router.post("/", (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
     // get data from form and add to ticket array
     var ticketCreator = req.body.ticketCreator;
     var title = req.body.title;
@@ -45,26 +45,26 @@ router.post("/", (req, res) => {
 
 });
 // NEW - SHOW FORM TO CREATE Ticket
-router.get("/newTicket", (req , res) => {
+router.get("/newTicket", middleware.isLoggedIn, (req , res) => {
     res.render("ticket/newTicket");
 });
 
 // SHOW - SHOWS INFO ABOUT SPECIFIC TICKET
-router.get("/:id", async(req, res) => {
+router.get("/:id", middleware.isLoggedIn, async(req, res) => {
     const ticket = await Ticket.findById(req.params.id);
     res.render("ticket/viewTicket",{ticket});
 
 });
 
 // EDIT Ticket ROUTE
-router.get("/:id/editTicket", (req, res) => {
+router.get("/:id/editTicket", middleware.isLoggedIn, (req, res) => {
     Ticket.findById(req.params.id, (err, foundTicket) => {
         res.render("ticket/editTicket", {ticket: foundTicket});
     });
 });
 
 // UPDATE TICKET ROUTE
-router.put("/:id",  (req, res) => {
+router.put("/:id", middleware.isLoggedIn, (req, res) => {
     // find and update correct ticket
     Ticket.findByIdAndUpdate(req.params.id, req.body.ticket, (err, updatedTicket) => {
         if(err){
@@ -78,7 +78,7 @@ router.put("/:id",  (req, res) => {
 });
 
 // delete ticket
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", middleware.isLoggedIn, async (req, res) => {
     const {id} = req.params;
     await Ticket.findByIdAndRemove(id);
     res.redirect('/backlog');

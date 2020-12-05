@@ -21,6 +21,8 @@ var ticketRoutes = require("./routes/ticket");
 var projectRoutes = require("./routes/project");
 var boardRoutes = require("./routes/board");
 
+// Require middleware
+var middleware = require("./middleware")
 
 // Seed Data
 var seedDB = require("./private/seedData");
@@ -77,7 +79,7 @@ app.get("/", function (req, res) {
     res.render("register");
 });
 
-app.get("/backlog", (req, res) => {
+app.get("/backlog", middleware.isLoggedIn, (req, res) => {
     Ticket.find({}, function (err, allTickets) {
         if (err) {
             console.log(err);
@@ -91,7 +93,7 @@ app.get("/backlog", (req, res) => {
 //     res.render("board");
 // });
 
-app.get("/board", (req, res) => {
+app.get("/board", middleware.isLoggedIn, (req, res) => {
     // Get all tickets from DB
     Ticket.find({}, function (err, allTickets) {
         if (err) {
