@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Ticket = require("../models/ticket");
-var middleware = require("../middleware");
+var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
 
 // INDEX - SHOW ALL TICKETS
 router.get("/", (req, res) => {
