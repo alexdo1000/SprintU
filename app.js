@@ -89,9 +89,9 @@ app.get("/backlog", middleware.isLoggedIn, (req, res) => {
     });
 });
 
-// app.get("/board", function(req, res){
-//     res.render("board");
-// });
+app.get("/landing", function(req, res){
+    res.render("landing");
+});
 
 app.get("/board", middleware.isLoggedIn, (req, res) => {
     // Get all tickets from DB
