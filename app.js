@@ -18,8 +18,9 @@ var Project = require("./models/project");
 // Requiring routes
 var indexRoutes = require("./routes/index");
 var ticketRoutes = require("./routes/ticket");
-var boardRoutes = require("./routes/board");
 var projectRoutes = require("./routes/project");
+var boardRoutes = require("./routes/board");
+
 
 // Seed Data
 var seedDB = require("./private/seedData");
@@ -86,16 +87,12 @@ app.get("/backlog", (req, res) => {
     });
 });
 
-app.get("/project", function (req, res) {
-    res.render("project");
-});
-
 // app.get("/board", function(req, res){
 //     res.render("board");
 // });
 
 app.get("/board", (req, res) => {
-    // Get all campgrounds from DB
+    // Get all tickets from DB
     Ticket.find({}, function (err, allTickets) {
         if (err) {
             console.log(err);
@@ -107,6 +104,7 @@ app.get("/board", (req, res) => {
 
 app.use("/", indexRoutes);
 app.use("/ticket", ticketRoutes);
+app.use("/project", projectRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

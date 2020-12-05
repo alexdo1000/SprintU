@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+
+    <div class="columns project-board">
+        <%projects.forEach( project => {%>
+            <a href="/project/<%= project._id %>"><div class="card-content card project">
+                    <div class="content project-title">
+                        <p class="project-title">
+                            <% if (project.title.length > 95) { %>
+                                <%= project.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= project.title %>
+                            <% } %>
+                        </p>
+
+                        <% if (project.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                </div>
+                                <!-- Should this be admin instead of assigneduser or nothing -->
+                                <!--
+                                <div class="column is-one-third">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+                                    <% } %>
+                                </div>
+                                -->
+                            </div>
+                        <% } %>
+                    </div>
+                </div></a>
+        <% }); %>
+    </div>
