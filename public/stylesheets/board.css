@@ -9,6 +9,24 @@
 .ticket {
     margin-bottom: 5px;
     max-height: 200px;
+    background-color: #fff;
+}
+
+.ticket:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.ticket:active {
+    background-color: rgb(230, 230, 230);
+}
+
+.lane-header {
+}
+
+.lane-header p {
+}
+
+.lane {
 }
 
 .ticket-title {
