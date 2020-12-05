@@ -22,9 +22,16 @@ router.post("/", (req, res) => {
     // get data from form and add to project array
     var title = req.body.title;
     var description = req.body.description;
+    var owner = req.user._id;
+    var members = []
+
     var newProject = {
-        title:title, description:description
+        title: title, 
+        description: description,
+        owner: owner,
+        members: members
     };
+    
     // Create a new project and save to database
     Project.create(newProject, function(err, newlyCreated){
         if(err){
