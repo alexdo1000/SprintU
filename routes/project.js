@@ -22,7 +22,9 @@ router.post("/", (req, res) => {
     // get data from form and add to project array
     var title = req.body.title;
     var description = req.body.description;
-    var owner = req.user._id;
+    var owner = {
+        id: req.user._id,
+    };
     var members = []
 
     var newProject = {
