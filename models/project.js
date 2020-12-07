@@ -10,12 +10,19 @@ var projectSchema = new mongoose.Schema({
             ref: "User",
         },
     },
+    board: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Board",
+        },
+    },
     members: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
     ],
+    
 });
 
 module.exports = mongoose.model("Project", projectSchema);
