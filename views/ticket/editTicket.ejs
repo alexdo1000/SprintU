@@ -32,7 +32,16 @@
                         <div class="field">
                             <label class="label">Lane</label>
                             <div class="control">
-                                <input class="input" type="text" name="ticket[lane]" value="<%= ticket.lane %>">
+                                <div class="select">
+                                    <select name="ticket[lane]">
+                                        <option><%= ticket.lane %></option>
+                                        <option>To do</option>
+                                        <option>In Progress</option>
+                                        <option>Review</option>
+                                        <option>Testing</option>
+                                        <option>Done</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="field">
