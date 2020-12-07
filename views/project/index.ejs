@@ -1,60 +1,65 @@
 <%- include("../partials/header") %>
 
-    <!-- Title bar -->
-    <div class = "notification is-link">
-        <div class = "level">
+<!-- Title bar -->
+<div class = "notification is-link">
+    <div class = "level">
         <div class = "level-left">
             <div class = "level-item">
                 <h1 class="subtitle is-5"><b>Projects</b></h1>
             </div>
         </div>
-        </div>
     </div>
+</div>
 
-    <div class="card">
-        <header class="card-header">
-            <p class="card-header-title">
-                Component
-            </p>
-            <a href="#" class="card-header-icon" aria-label="more options">
-          <span class="icon">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-            </a>
-        </header>
-        <div class="card-content">
-            <div class="content">
-                <%projects.forEach( project => {%>
-                    <a href="/projects/<%= project._id %>"><div class="card-content card project">
-                            <div class="content project-title">
-                                <p class="project-title">
-                                    <% if (project.title.length > 95) { %>
-                                        <%= project.title.substring(0, 92) + '...' %>
-                                    <% } else { %>
-                                        <%= project.title %>
-                                    <% } %>
-                                </p>
-                                <div class="columns ticket-footer">
-                                    <span class="icon is-large has-text-info">
-                                              <i class="fas fa-user-friends"></i>
-                                    </span>
-                                    <div class="column is-one-third">
-                                        <% if (project.members.length == 0) { %>
-                                            <span class="tag is-rounded is-link is-light project-member-count">0</span>
-                                        <% } else { %>
-                                            <span class="tag is-rounded is-link is-light project-member-count"><%= project.members.length %></span>
-                                        <%}%>
+<div><a href="/projects/newProject"><button class ="button is-link">Add Project</button</a></div>
+
+<table class="table is-fullwidth">
+    <%var cellCounter = 0 %>
+    <%projects.forEach( project => {%>
+        <% if (cellCounter%3 == 0) { %>
+        <tr>
+            <% } %>
+            <td>
+                <div class="card large">
+                    <div class="card-content">
+                        <div class="content">
+                            <a href="/projects/<%= project._id %>"><div class="card-content card project">
+                                    <div class="content project-title">
+                                        <p class="project-title">
+                                            <% if (project.title.length > 95) { %>
+                                                <%= project.title.substring(0, 92) + '...' %>
+                                            <% } else { %>
+                                                <%= project.title %>
+                                            <% } %>
+                                        </p>
+                                        <div class="columns ticket-footer">
+                                            <span class="icon is-large has-text-info">
+                                                      <i class="fas fa-user-friends"></i>
+                                            </span>
+                                            <div class="column is-one-third">
+                                                <% if (project.members.length == 0) { %>
+                                                    <span class="tag is-rounded is-link is-light project-member-count">1</span>
+                                                <% } else { %>
+                                                    <span class="tag is-rounded is-link is-light project-member-count"><%= project.members.length +1 %></span>
+                                                <%}%>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                    </div></a>
-                    <footer class="card-footer">
-                        <a href="/projects/<%= project._id %>/editProject" class="card-footer-item">Edit</a>
-                        <a href="/projects/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
-                    </footer>
-                <% }); %>
-            </div>
-        </div>
-    </div>
+                                </div></a>
+                            <footer class="card-footer">
+                                <a href="/projects/<%= project._id %>/editProject" class="card-footer-item">Edit</a>
+                                <a href="/projects/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <% if (cellCounter != 0 && cellCounter+1%3 == 0) { %>
+        </tr>
+        <% } %>
+        <% cellCounter++ %>
+    <% }); %>
+</table>
 
-    <div><a href="/projects/newProject"><button class ="button is-link">Add Project</button</a></div>
+
+
