@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Project = require("../models/project");
 var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
+var User = require("../models/user");
 
 // INDEX - SHOW ALL PROJECT
 router.get("/", (req, res) => {
@@ -44,6 +45,22 @@ router.post("/", (req, res) => {
         }
     });
 
+    updatedUser = User.findById(req.user._id, (err, foundUser) => {
+        if (err) {
+            console.log(err);
+        } else { 
+            foundUser.projects.push(newProject);
+            
+            User.findByIdAndUpdate(req.params.id, req.body.project, (err, updatedProject) => {
+                if(err){
+                    res.redirect("/:id");
+                } else {
+                    // redirect somewhere (show page)
+                    res.redirect("/projects");
+                }
+            });
+        }
+    });
 
 });
 
