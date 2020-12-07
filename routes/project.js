@@ -80,7 +80,7 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
 });
 
 // NEW - SHOW FORM TO CREATE PROJECT
-router.get("/newProject", (req , res) => {
+router.get("/newProject", middleware.isLoggedIn, (req , res) => {
     res.render("project/newProject");
 });
 
