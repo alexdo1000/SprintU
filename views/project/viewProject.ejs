@@ -1,2 +1,175 @@
-<%- include("../partials/header") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SprintU</title>
+    <link rel="stylesheet" href="/css/bulma.css">
+    <link rel="stylesheet" href="/stylesheets/board.css">
+    <link rel="stylesheet" href="/stylesheets/project.css">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9908c9251d.js" crossorigin="anonymous"></script>
+    <script src="/js/ticket.js"></script>
+    <script src="/js/viewProject.js"></script>
+
+</head>
+
+<!-- Navigation bar -->
+<body>
+
+    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img src="/sprintulogo.png" width="132" height="28">
+        </a>
+
+      </div>
+
+        <%if(currentUser){%>
+
+          
+
+          <div id="navbarmain" class="navbar-menu">
+            <div class="navbar-start">
+              <a href='/' class="navbar-item">
+                Home
+              </a>
+              <a href='/projects' class="navbar-item">
+                Projects
+              </a>
+              <a href='/backlog' class="navbar-item">
+                  Backlog
+              </a>
+
+              <a href='/board' class="navbar-item">
+                Board
+              </a>
+
+          </div>
+          <%}%>
+
+        <!-- Navbar items can be changed its just a template -->
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <%if (!currentUser){%>
+                    <a class="button is-link" href="/register">
+                      <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light" a href="/login">
+                      <strong>Log in</strong>
+                    </a>
+              <%} else{%>
+                <a class="button is-link">
+                  <strong>Signed In As <%= currentUser.username %></strong>
+                </a>
+                <a class="button is-light">
+                  <strong>Log out</strong>
+                </a>
+                <%}%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+        <div class="alert alert-success" role="alert">
+            <%= success %>
+        </div>
+        <% } %>
+      </div>
+
+
+    <!-- Project view -->
+    <div class="columns project-view">
+        <div class="column  is-three-quarters">
+            <div class="card title-card">
+                <header class="card-header">
+                    <p class="card-header-title"><%= project.title %></p>
+                </header>
+                <div class="card-content kanban-backlog">
+                    <div class="columns">
+                        <a href="/board" class="column kanban">
+                            <div class="column kanban">
+                                    <i class="fas fa-th-list fa-10x"></i>
+                                    <p>Backlog</p>
+                            </div>
+                        </a>
+                        <a href="/backlog" class="column backlog">
+                            <div class="column backlog">
+                                    <i class="fas fa-table fa-10x"></i>
+                                    <p>Kanban Board</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card project-info">
+                <header class="card-header">
+                    <p class="card-header-title">Details</p>
+                </header>
+                <div class="card-content details">
+
+                    <table class="table details">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fas fa-file-alt"></i>
+                                </td>
+                                <td>
+                                    <%= project.description %></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fas fa-users"></i>
+                                </td>
+                                <td>
+                                    <%= project.members.length + 1 %>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="dropdown" id="memberList">
+                                        <div class="dropdown-trigger">
+                                            <button class="button" id="memberListButton" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                                <span>See Members List</span>
+                                                <span class="icon is-small">
+                                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                                            <div class="dropdown-content">
+                                                <p class="dropdown-item"><%= owner.username %></p>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    
 

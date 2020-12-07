@@ -1,0 +1,45 @@
+.project-view {
+    margin: 30px;
+    min-height: 90vh;
+}
+
+table.details tr td {
+    border: 0px;
+}
+
+div.kanban-backlog,
+div.details {
+    min-height: 50vh;
+}
+
+div.kanban-backlog {
+    padding: 0;
+}
+
+.kanban-backlog .columns {
+    min-height: inherit;
+    min-width: inherit;
+    margin: 0;
+}
+
+.kanban:hover, .backlog:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.kanban:active, .backlog:active {
+    background-color: rgb(230, 230, 230);
+}
+
+.kanban, .backlog {
+    text-align: center;
+    font-style: italic;
+}
+
+.kanban i, .backlog i {
+    padding-top: 10vh;
+    display: block;
+    padding: auto;
+    margin: auto;
+    /* text-align: center; */
+
+}

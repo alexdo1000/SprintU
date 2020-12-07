@@ -72,7 +72,9 @@ router.get("/newProject", (req , res) => {
 // SHOW - SHOWS INFO ABOUT SPECIFIC PROJECT
 router.get("/:id", async(req, res) => {
     const project = await Project.findById(req.params.id);
-    res.render("project/viewProject",{project});
+    const owner = await User.findById(project.owner.id)
+    
+    res.render("project/viewProject",{project, owner});
 
 });
 
