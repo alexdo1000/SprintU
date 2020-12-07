@@ -3,12 +3,20 @@ var router = express.Router();
 var Project = require("../models/project");
 var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
 var User = require("../models/user");
+var Board = require("../models/board");
 
 // INDEX - SHOW ALL PROJECT
-router.get("/", (req, res) => {
+router.get("/", middleware.isLoggedIn, (req, res) => {
 
-    // Get all projects from DB
-    Project.find({}, function(err, allProjects){
+    // Get the users projects and only show those projects they're part of
+    const userProjects = req.user.projects
+
+    // Get the user's projects from the db
+    projectArr = Project.find({
+        _id: {
+            $in: userProjects
+        }
+    }, (err, allProjects) => {
         if(err){
             console.log(err);
         } else {
@@ -19,49 +27,56 @@ router.get("/", (req, res) => {
 });
 
 // CREATE - ADD NEW PROJECT TO DB
-router.post("/", (req, res) => {
-    // get data from form and add to project array
-    var title = req.body.title;
-    var description = req.body.description;
-    var owner = {
-        id: req.user._id,
-    };
-    var members = []
+router.post("/", middleware.isLoggedIn, async (req, res) => {
+	// get data from form and add to project array
+	// also need to create the board object for the project
+	var title = req.body.title;
+	var description = req.body.description;
+	var owner = {
+		id: req.user._id,
+	};
+	var members = [];
+	var newBoard = {
+		lane1: [],
+		lane2: [],
+		lane3: [],
+		lane4: [],
+		lane5: [],
+		backlog: [],
+	};
+	var newProject = {
+		title: title,
+		description: description,
+		owner: owner,
+		board: {}, // Need to create the board in the db, then set its ID
+		members: members,
+	};
 
-    var newProject = {
-        title: title, 
-        description: description,
-        owner: owner,
-        members: members
-    };
-    
-    // Create a new project and save to database
-    Project.create(newProject, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-            // redirect back to project page
-            res.redirect("/projects")
-        }
-    });
+	// Create the board, then in the callback, create the project including the new board
+	var createdBoard = Board.create(newBoard, (err, createdBoard) => {
+		if (err) {
+			req.flash("error", "Something went wrong");
+			console.log(err);
+		} else {
+            newProject.board.id = createdBoard._id;
+            console.log("Created board with id:" + createdBoard._id);
 
-    updatedUser = User.findById(req.user._id, (err, foundUser) => {
-        if (err) {
-            console.log(err);
-        } else { 
-            foundUser.projects.push(newProject);
-            
-            User.findByIdAndUpdate(req.params.id, req.body.project, (err, updatedProject) => {
-                if(err){
-                    res.redirect("/:id");
-                } else {
-                    // redirect somewhere (show page)
-                    res.redirect("/projects");
-                }
-            });
-        }
-    });
+			// Create a new project and save to database
+			Project.create(newProject, function (err, newlyCreated) {
+				if (err) {
+					console.log(err);
+				} else {
+					// Add the current project to user's project array
+					req.user.projects.push(newlyCreated);
+					req.user.save();
+					req.flash("success", "Successfully created new project");
 
+					// redirect back to project page
+					res.redirect("/projects");
+				}
+			});
+		}
+	});
 });
 
 // NEW - SHOW FORM TO CREATE PROJECT
@@ -73,7 +88,7 @@ router.get("/newProject", (req , res) => {
 router.get("/:id", async(req, res) => {
     const project = await Project.findById(req.params.id);
     const owner = await User.findById(project.owner.id)
-    
+    console.log(project);
     res.render("project/viewProject",{project, owner});
 
 });

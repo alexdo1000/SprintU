@@ -93,20 +93,10 @@ app.get("/landing", function(req, res){
     res.render("landing");
 });
 
-app.get("/board", middleware.isLoggedIn, (req, res) => {
-    // Get all tickets from DB
-    Ticket.find({}, function (err, allTickets) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("board", { tickets: allTickets });
-        }
-    });
-});
-
 app.use("/", indexRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/projects", projectRoutes);
+app.use("/projects/:id/board", boardRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
