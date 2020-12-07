@@ -1,25 +1,54 @@
 <%- include("../partials/header") %>
 
-<section class="section">
-    <div class="container">
-      <h1 class="title">Share Project</h1>
-      
+<section class="section is-title-bar is-small">
+    
+  <div class = "level">
+    <div class="level-left">
+      <div class="level-item ">
+        <h1 class="title is-2">Share Project</h1>
+      </div>
+    </div>
+  </div> 
+
+</section>
+
+<section class =  "section is-main-section is-small">
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Email input">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
       
     </div>
-    <div class="field">
-        <label class="label">Email</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fas fa-exclamation-triangle"></i>
-          </span>
-        </div>
-        <p class="help is-danger">This email is invalid</p>
-      </div>
-  </section>
 
+  </div>
+  <button class="button is-link">Share</button>
+</section>
+
+  <section class =  "section is-main-section is-small">
+  <div class="card has-table">
+    <header class = "card-header">
+        <p class="card-header-title">
+            Current Users
+        </p>
+    </header>
+  <div>
+
+    <div class = "card-content">
+      
+
+      <table class = "table is-fullwidth is-striped is-narrow">
+        <thead>
+          <tr>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+</section>  
 
 
