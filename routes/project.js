@@ -114,6 +114,20 @@ router.put("/:id",  (req, res) => {
 
 });
 
+//SHARE PROJECT ROUTE
+router.put("/:id",  (req, res) => {
+    
+    Project.findByIdAndUpdate(req.params.id, req.body.members, (err, updatedMembers) => {
+        if(err){
+            res.redirect("/:id");
+        } else {
+            // redirect somewhere (show page)
+            res.redirect("/projects");
+        }
+    });
+
+});
+
 // delete project
 router.delete("/:id", async (req, res) => {
     const {id} = req.params;
