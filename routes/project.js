@@ -121,33 +121,35 @@ router.get("/:id/shareProject", (req, res) => {
 
 //UPDATE MEMBER ROUTE
 router.put("/:id",  (req, res) => {
-    
-    Project.findByIdAndUpdate(req.params.id, req.body.project, (err, updatedProject) => {
+    console.log("im here in the error");
+    Project.findByIdAndUpdate(req.params.id, req.body.project, async (err, updatedProject) => {
         if(err){
             res.redirect("/:id");
         } else {
 
-            var userName={};
-
-            if (req.body.addUser.userName) {
-                userName = User.findOne({
-                    username: {
-                        $eq: req.body.addUser.userName
-                    }
+            var userName="";
+            
+            if (req.body.member.userName) {
+                
+                userName = await User.find({
+                   
+                    username: req.body.member.userName
+                    
                    
                 }, function (err, docs) {
                     console.log(docs)
                     console.log(typeof (docs))
                 });
-                console.log("hello");
-                updatedProject.members.push(userName);
-                req.body.addUser.save();               
+                
+                req.body.member.userName.push(req.body.member);
+                req.body.member.save();               
             }
 
-            res.redirect("/projects");
+            res.redirect("/projects"); 
+            console.log("im here");
         }
     });
-
+   
 });
 
 // delete project
