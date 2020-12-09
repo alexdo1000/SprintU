@@ -88,24 +88,80 @@ router.get("/:id", middleware.isLoggedIn, async (req, res) => {
 });
 
 // EDIT Ticket ROUTE
-router.get("/:id/editTicket", middleware.isLoggedIn, (req, res) => {
-    Ticket.findById(req.params.id, (err, foundTicket) => {
-        res.render("ticket/editTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id });
+router.get("/:ticket_id/editTicket", middleware.isLoggedIn, (req, res) => {
+    Ticket.findById(req.params.ticket_id, (err, foundTicket) => {
+        res.render("ticket/editTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id, ticketID: req.params.ticket_id });
     });
 });
 
 // UPDATE TICKET ROUTE
-router.put("/:id", middleware.isLoggedIn, (req, res) => {
+router.put("/:ticket_id", middleware.isLoggedIn, (req, res) => {
     // find and update correct ticket
-    Ticket.findByIdAndUpdate(req.params.id, req.body.ticket, (err, updatedTicket) => {
+
+    changed = false;
+    var ticketCreator = req.body.ticketCreator;
+    var title = req.body.title;
+    var category = req.body.category;
+    var description = req.body.description;
+    var points = req.body.points;
+    var assignedUser = req.body.assignedUser;
+    var lane = req.body.lane;
+    var newTicket = {
+        ticketCreator: ticketCreator,
+        title: title,
+        category: category,
+        description: description,
+        points: points,
+        assignedUser: assignedUser,
+        lane: lane
+    };
+
+
+    console.log(newTicket);
+
+
+    Ticket.findByIdAndRemove(req.params.ticket_id, (err) => {
         if (err) {
-            res.redirect("/:id");
+            console.log(err);
+            res.redirect("back");
         } else {
-            // redirect back to backlog
-            urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
-            res.redirect(urlStr);
+            // Create a new ticket and save to database
+            Ticket.create(newTicket, function (err, newlyCreated) {
+                if (err) {
+                    console.log(err);
+                } else {
+
+                    // Add it to the right lane
+                    Board.findById(req.params.backlog_id, async (err, foundBoard) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            // Need to get the lane array, push to it
+                            if (lane == 'Backlog') {
+                                foundBoard.backlog.push(newlyCreated);
+                            } else if (lane == 'To do') {
+                                foundBoard.lane1.push(newlyCreated);
+                            } else if (lane == 'In Progress') {
+                                foundBoard.lane2.push(newlyCreated);
+                            } else if (lane == 'Review') {
+                                foundBoard.lane3.push(newlyCreated);
+                            } else if (lane == 'Testing') {
+                                foundBoard.lane4.push(newlyCreated);
+                            } else if (lane == 'Done') {
+                                foundBoard.lane5.push(newlyCreated);
+                            }
+
+                            foundBoard.save();
+                        }
+                    });
+
+                    // redirect back to backlog
+                    urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
+                    res.redirect(urlStr);
+                }
+            });
         }
-    });
+    });    
 
 });
 
