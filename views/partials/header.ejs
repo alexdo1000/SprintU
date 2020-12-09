@@ -28,20 +28,17 @@
 
           <div id="navbarmain" class="navbar-menu">
             <div class="navbar-start">
-              <a href='/' class="navbar-item">
-                Home
-              </a>
-              <a href='/projects' class="navbar-item">
-                Projects
-              </a>
-              <a href='/backlog' class="navbar-item">
-                  Backlog
-              </a>
-
-              <a href='/board' class="navbar-item">
-                Board
-              </a>
-
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  Your Work
+                </a>
+                <div class="navbar-dropdown is-boxed">
+                  <a class="navbar-item" href="/projects">
+                    Projects
+                  </a>
+                </div>
+              </div>
+              
           </div>
           <%}%>
 
@@ -61,7 +58,7 @@
                 <a class="button is-link">
                   <strong>Signed In As <%= currentUser.username %></strong>
                 </a>
-                <a class="button is-light">
+                <a class="button is-light" href ="/">
                   <strong>Log out</strong>
                 </a>
                 <%}%>
