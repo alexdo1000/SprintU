@@ -76,7 +76,7 @@ app.use(express.static(__dirname + "/node_modules/bulma"));
 
 // Routes
 app.get("/", function (req, res) {
-    res.render("register");
+    res.render("landing");
 });
 
 app.get("/backlog", middleware.isLoggedIn, (req, res) => {
@@ -89,9 +89,6 @@ app.get("/backlog", middleware.isLoggedIn, (req, res) => {
     });
 });
 
-app.get("/landing", function(req, res){
-    res.render("landing");
-});
 
 app.use("/", indexRoutes);
 app.use("/ticket", ticketRoutes);
