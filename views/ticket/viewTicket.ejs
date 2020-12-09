@@ -19,6 +19,7 @@
                             <th>Points</th>
                             <th>Category</th>
                             <th>Assigned User</th>
+                            <th>Lane</th>
                             <th>Action</th>
                             
                         </tr>
@@ -30,6 +31,7 @@
                             <td><span class="tag is-rounded story-points"> <%= ticket.points %></td>
                             <td> <span class="tag is-rounded is-link category"><%= ticket.category %></span></td>
                             <td><span class="tag is-rounded is-info is-light ticket-user"> <%= ticket.assignedUser.charAt(0) %> </span></td>
+                            <td><%=ticket.lane%></td>
                             <td>
                                 <form action="/ticket/<%= ticket._id%>?_method=DELETE" method="POST">
                                     <button class="button is-danger"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete Ticket</span></a> 
