@@ -27,7 +27,7 @@
             <!-- Individual tickets -->
             
             <% lane1.forEach( ticket => { %>
-                <a href="/ticket/<%= ticket._id %>"><div class="card-content card ticket">
+                <a href="/projects/<%= projectID %>/backlog/<%=boardID%>/ticket/<%=ticket._id%>"><div class="card-content card ticket">
                     <div class="content ticket-title">
                         <p class="ticket-title">
                             <% if (ticket.title.length > 95) { %>
@@ -64,7 +64,6 @@
         </div>
 
         <!-- In Progress -->
-        <!-- To Do -->
         <div class="column card lane">
             <header class="card-header lane-header ">
                 <p class="card-header-title">
@@ -73,14 +72,44 @@
             </header>
 
             <!-- Individual tickets -->
-            
-            <!-- ticket code goes here -->
+            <% lane2.forEach( ticket => { %>
+                <a href="/projects/<%= projectID %>/backlog/<%=boardID%>/ticket/<%=ticket._id%>"><div class="card-content card ticket">
+                    <div class="content ticket-title">
+                        <p class="ticket-title">
+                            <% if (ticket.title.length > 95) { %>
+                                <%= ticket.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= ticket.title %>
+                            <% } %>
+                        </p>
 
+                        <% if (ticket.category || ticket.points || ticket.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                    <div class="tags has-addons">
+                                        <% if (ticket.category) { %>
+                                        <span class="tag is-rounded is-link category">Category</span>
+                                        <% } %>
+
+                                        <% if (ticket.points) { %>
+                                            <span class="tag is-rounded story-points"> <%= ticket.points %> </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="column is-one-third">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div></a>
+            <% }); %>
 
         </div>
 
         <!-- Review -->
-        <!-- To Do -->
         <div class="column card lane">
             <header class="card-header lane-header">
                 <p class="card-header-title">
@@ -89,13 +118,44 @@
             </header>
 
             <!-- Individual tickets -->
-            
-            <!-- ticket code goes here -->
+            <% lane3.forEach( ticket => { %>
+                <a href="/projects/<%= projectID %>/backlog/<%=boardID%>/ticket/<%=ticket._id%>"><div class="card-content card ticket">
+                    <div class="content ticket-title">
+                        <p class="ticket-title">
+                            <% if (ticket.title.length > 95) { %>
+                                <%= ticket.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= ticket.title %>
+                            <% } %>
+                        </p>
+
+                        <% if (ticket.category || ticket.points || ticket.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                    <div class="tags has-addons">
+                                        <% if (ticket.category) { %>
+                                        <span class="tag is-rounded is-link category">Category</span>
+                                        <% } %>
+
+                                        <% if (ticket.points) { %>
+                                            <span class="tag is-rounded story-points"> <%= ticket.points %> </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="column is-one-third">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div></a>
+            <% }); %>
 
         </div>
 
         <!-- Testing -->
-        <!-- To Do -->
         <div class="column card lane">
             <header class="card-header lane-header">
                 <p class="card-header-title">
@@ -104,13 +164,44 @@
             </header>
 
             <!-- Individual tickets -->
-            
-            <!-- ticket code goes here -->
+            <% lane4.forEach( ticket => { %>
+                <a href="/projects/<%= projectID %>/backlog/<%=boardID%>/ticket/<%=ticket._id%>"><div class="card-content card ticket">
+                    <div class="content ticket-title">
+                        <p class="ticket-title">
+                            <% if (ticket.title.length > 95) { %>
+                                <%= ticket.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= ticket.title %>
+                            <% } %>
+                        </p>
+
+                        <% if (ticket.category || ticket.points || ticket.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                    <div class="tags has-addons">
+                                        <% if (ticket.category) { %>
+                                        <span class="tag is-rounded is-link category">Category</span>
+                                        <% } %>
+
+                                        <% if (ticket.points) { %>
+                                            <span class="tag is-rounded story-points"> <%= ticket.points %> </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="column is-one-third">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div></a>
+            <% }); %>
 
         </div>
 
         <!-- Done -->
-        <!-- To Do -->
         <div class="column card lane">
             <header class="card-header lane-header">
                 <p class="card-header-title">
@@ -119,8 +210,40 @@
             </header>
 
             <!-- Individual tickets -->
-            
-            <!-- ticket code goes here -->
+            <% lane5.forEach( ticket => { %>
+                <a href="/projects/<%= projectID %>/backlog/<%=boardID%>/ticket/<%=ticket._id%>"><div class="card-content card ticket">
+                    <div class="content ticket-title">
+                        <p class="ticket-title">
+                            <% if (ticket.title.length > 95) { %>
+                                <%= ticket.title.substring(0, 92) + '...' %>
+                            <% } else { %>
+                                <%= ticket.title %>
+                            <% } %>
+                        </p>
+
+                        <% if (ticket.category || ticket.points || ticket.assignedUser) { %>
+                            <div class="columns ticket-footer">
+                                <div class="column">
+                                    <div class="tags has-addons">
+                                        <% if (ticket.category) { %>
+                                        <span class="tag is-rounded is-link category">Category</span>
+                                        <% } %>
+
+                                        <% if (ticket.points) { %>
+                                            <span class="tag is-rounded story-points"> <%= ticket.points %> </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="column is-one-third">
+                                    <% if (ticket.assignedUser) { %>
+                                        <span class="tag is-rounded is-link is-light ticket-user"><%= ticket.assignedUser.charAt(0) %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div></a>
+            <% }); %>
 
 
         </div>

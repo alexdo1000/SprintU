@@ -13,19 +13,23 @@ router.get("/:backlog_id/", middleware.isLoggedIn, (req, res) => {
             console.log(err);
         } else {
             var backlogTickets = [];
-            console.log(foundBoard.backlog)
+
             if (foundBoard.backlog) {
                 backlogTickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.backlog
                     }
                 }, function (err, docs) {
-                    console.log(docs)
-                    console.log(typeof (docs))
+                    if (err) {
+                        print(err);
+                    }
                 });
             }
 
-            res.render("backlog", { tickets: backlogTickets, backlogID: req.params.backlog_id });
+            res.render("backlog", {
+                tickets: backlogTickets,
+                backlogID: req.params.backlog_id
+            });
         }
     });
 
