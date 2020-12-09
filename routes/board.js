@@ -24,49 +24,65 @@ router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
             var lane4Tickets = [];
             var lane5Tickets = [];
 
-            if (foundBoard.lane1) {
-                lane1Tickets = await Ticket.find({
-                    _id: {
-                        $in: foundBoard.lane1
-                    }
-                }).toArray(function (err, items){
-                    if (err) {
-                        console.log(err);
-                    } 
-                });
-            }
+            // if (foundBoard.lane1) {
+            //     lane1Tickets = await Ticket.find({
+            //         _id: {
+            //             $in: foundBoard.lane1
+            //         }
+            //     }).toArray(function (err, items){
+            //         if (err) {
+            //             console.log(err);
+            //         } 
+            //     });
+            // }
 
-            if (foundBoard.lane2) {
-                lane2Tickets = await Ticket.find({
-                    _id: {
-                        $in: foundBoard.lane2
-                    }
-                }).toArray();
-            }
+            // if (foundBoard.lane2) {
+            //     lane2Tickets = await Ticket.find({
+            //         _id: {
+            //             $in: foundBoard.lane2
+            //         }
+            //     }).toArray(function (err, items){
+            //         if (err) {
+            //             console.log(err);
+            //         } 
+            //     });
+            // }
 
-            if (foundBoard.lane3) {
-                lane3Tickets = await Ticket.find({
-                    _id: {
-                        $in: foundBoard.lane3
-                    }
-                }).toArray();
-            }
+            // if (foundBoard.lane3) {
+            //     lane3Tickets = await Ticket.find({
+            //         _id: {
+            //             $in: foundBoard.lane3
+            //         }
+            //     }).toArray(function (err, items){
+            //         if (err) {
+            //             console.log(err);
+            //         } 
+            //     });
+            // }
 
-            if (foundBoard.lane4) {
-                lane4Tickets = await Ticket.find({
-                    _id: {
-                        $in: foundBoard.lane4
-                    }
-                }).toArray();
-            }
+            // if (foundBoard.lane4) {
+            //     lane4Tickets = await Ticket.find({
+            //         _id: {
+            //             $in: foundBoard.lane4
+            //         }
+            //     }).toArray(function (err, items){
+            //         if (err) {
+            //             console.log(err);
+            //         } 
+            //     });
+            // }
 
-            if (foundBoard.lane5) {
-                lane5Tickets = await Ticket.find({
-                    _id: {
-                        $in: foundBoard.lane5
-                    }
-                }).toArray();
-            }
+            // if (foundBoard.lane5) {
+            //     lane5Tickets = await Ticket.find({
+            //         _id: {
+            //             $in: foundBoard.lane5
+            //         }
+            //     }).toArray(function (err, items){
+            //         if (err) {
+            //             console.log(err);
+            //         } 
+            //     });
+            // }
 
 
             res.render("board", { lane1: lane1Tickets, lane2: lane2Tickets, lane3: lane3Tickets, lane4: lane4Tickets, lane5: lane5Tickets });

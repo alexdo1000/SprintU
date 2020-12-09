@@ -36,12 +36,12 @@
                   <% tickets.forEach(tickets => { %>
                     
                     <tr>
-                      <td><a href="/ticket/<%=tickets._id%>"><%= tickets.title%></a></td>
+                      <td><a href="ticket/<%=tickets._id%>"><%= tickets.title%></a></td>
                       <td><%= tickets.description %></td>
                       <td><span class="tag is-rounded story-points"> <%= tickets.points %></td>
                       <td><span class="tag is-rounded is-link category"><%= tickets.category %></td>
                       <td>
-                        <a class="button is-link is-small" href="/ticket/<%=tickets._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                        <a class="button is-link is-small" href="ticket/<%=tickets._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
                       </td>
                     </tr>
         
@@ -52,7 +52,7 @@
           </div>
 
         </div>
-        <div><a href="/ticket/newTicket"><button class ="button is-link">Add Ticket</button</a></div>
+        <div><a href="ticket/newTicket"><button class ="button is-link">Add Ticket</button</a></div>
       </div>
         
         </section>

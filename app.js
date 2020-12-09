@@ -92,10 +92,11 @@ app.get("/backlog", middleware.isLoggedIn, (req, res) => {
 
 
 app.use("/", indexRoutes);
-app.use("/ticket", ticketRoutes);
 app.use("/projects", projectRoutes);
 app.use("/projects/:id/board", boardRoutes);
-app.use("/projects/:id/backlog", boardRoutes);
+app.use("/projects/:id/backlog", backlogRoutes);
+app.use("/projects/:id/backlog/:backlog_id/ticket", ticketRoutes);
+
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
