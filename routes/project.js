@@ -113,36 +113,38 @@ router.put("/:id", middleware.checkProjectMembership, (req, res) => {
 });
 
 // EDIT MEMBER ROUTE
-router.get("/:id/shareProject", (req, res) => {
+router.get("/:id/shareProject", middleware.checkProjectMembership, (req, res) => {
     Project.findById(req.params.id, (err, foundProject) => {
         res.render("project/shareProject", {project: foundProject});
     });
 });
 
 //UPDATE MEMBER ROUTE
-router.put("/:id",  (req, res) => {
-    console.log("im here in the error");
-    Project.findByIdAndUpdate(req.params.id, req.body.project, async (err, updatedProject) => {
-        if(err){
+router.put("/:id/shareProject", middleware.checkProjectMembership, (req, res) => {
+    Project.findById(req.params.id, async (err, foundProject) => {
+        if (err) {
             res.redirect("/:id");
+            console.log(err);
         } else {
+            var userObj="";
+            console.log(req.body.member);
 
-            var userName="";
-            
-            if (req.body.member.userName) {
-                
-                userName = await User.find({
-                   
-                    username: req.body.member.userName
-                    
-                   
-                }, function (err, docs) {
-                    console.log(docs)
-                    console.log(typeof (docs))
-                });
-                
-                req.body.member.userName.push(req.body.member);
-                req.body.member.save();               
+            memberSearch = []
+
+            if (req.body.member) {
+                userObj = await User.find({
+                    username: req.body.member
+                }, function (err, userObj) {
+                    console.log(userObj[0])
+                    // console.log(typeof (userObj))
+                    if (userObj) {
+                        foundProject.members.push(userObj[0])
+                        userObj[0].projects.push(foundProject)
+
+                        userObj[0].save()
+                        foundProject.save()
+                    }  
+                });         
             }
 
             res.redirect("/projects"); 
