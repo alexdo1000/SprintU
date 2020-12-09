@@ -4,7 +4,7 @@
             <div class="row">
                 <h1 style="text-align: center;">Edit</h1>
                 <div style="width: 30%; margin: 25px auto">
-                    <form action="/ticket/<%= ticket._id %>?_method=PUT" method="POST">
+                    <form action="/projects/<%= projectID %>/backlog/<%= backlogID %>/ticket/<%= ticket._id %>?_method=PUT" method="POST">
                         <div class="field">
                             <label class="label">Title</label>
                             <div class="control">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </form>
-                    <a href="/backlog">Go Back</a>
+                    <a href="/projects/<%= projectID %>/backlog/<%= backlogID %>">Go Back</a>
                 </div>
             </div>
         </div>
