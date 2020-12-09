@@ -3,26 +3,30 @@ var router = express.Router();
 var User = require("../models/user");
 var Ticket = require("../models/ticket");
 var Project = require("../models/project");
-var Backlog = require("../models/board");
+var Board = require("../models/board");
 var middleware = require("../middleware");
 
 
 router.get("/:backlog_id/", middleware.isLoggedIn, (req, res) => {
-    foundBacklog = Backlog.findById(req.params.backlog_id, async (err, foundBacklog) => {
-        if(err){
+    foundBoard = Board.findById(req.params.backlog_id, async (err, foundBoard) => {
+        if (err) {
             console.log(err);
-        }else{
-            const backlogTickets =[];
+        } else {
+            var backlogTickets = [];
 
-            if (backlogTickets.backlog) {
+            if (foundBoard.backlog) {
                 backlogTickets = await Ticket.find({
                     _id: {
-                        $in: foundBacklog.backlog
+                        $in: foundBoard.backlog
                     }
-                }).toArray();
+                }).toArray(function (err, items){
+                    if (err) {
+                        console.log(err);
+                    }
+                });
             }
 
-            res.render("backlog", { backlog: backlogTickets});
+            res.render("backlog", { backlog: backlogTickets });
         }
     });
 

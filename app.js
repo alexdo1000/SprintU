@@ -20,6 +20,7 @@ var indexRoutes = require("./routes/index");
 var ticketRoutes = require("./routes/ticket");
 var projectRoutes = require("./routes/project");
 var boardRoutes = require("./routes/board");
+var backlogRoutes = require("./routes/backlog");
 
 // Require middleware
 var middleware = require("./middleware")
@@ -94,6 +95,7 @@ app.use("/", indexRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/projects", projectRoutes);
 app.use("/projects/:id/board", boardRoutes);
+app.use("/projects/:id/backlog", boardRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

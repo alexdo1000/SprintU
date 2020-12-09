@@ -18,21 +18,25 @@ router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
             // Now get the arrays of tickets using the lanes which contain all the ticket IDs
                 
             
-            const lane1Tickets = [];
-            const lane2Tickets = [];
-            const lane3Tickets = [];
-            const lane4Tickets = [];
-            const lane5Tickets = [];
+            var lane1Tickets = [];
+            var lane2Tickets = [];
+            var lane3Tickets = [];
+            var lane4Tickets = [];
+            var lane5Tickets = [];
 
-            if (lane1Tickets.lane1) {
+            if (foundBoard.lane1) {
                 lane1Tickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.lane1
                     }
-                }).toArray();
+                }).toArray(function (err, items){
+                    if (err) {
+                        console.log(err);
+                    } 
+                });
             }
 
-            if (lane2Tickets.lane2) {
+            if (foundBoard.lane2) {
                 lane2Tickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.lane2
@@ -40,7 +44,7 @@ router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
                 }).toArray();
             }
 
-            if (lane3Tickets.lane3) {
+            if (foundBoard.lane3) {
                 lane3Tickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.lane3
@@ -48,7 +52,7 @@ router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
                 }).toArray();
             }
 
-            if (lane4Tickets.lane4) {
+            if (foundBoard.lane4) {
                 lane4Tickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.lane4
@@ -56,7 +60,7 @@ router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
                 }).toArray();
             }
 
-            if (lane5Tickets.lane5) {
+            if (foundBoard.lane5) {
                 lane5Tickets = await Ticket.find({
                     _id: {
                         $in: foundBoard.lane5

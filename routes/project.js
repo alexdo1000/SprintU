@@ -85,7 +85,7 @@ router.get("/newProject", middleware.isLoggedIn, (req , res) => {
 });
 
 // SHOW - SHOWS INFO ABOUT SPECIFIC PROJECT
-router.get("/:id", async(req, res) => {
+router.get("/:id", middleware.checkProjectMembership, async(req, res) => {
     const project = await Project.findById(req.params.id);
     const owner = await User.findById(project.owner.id)
     console.log(project);
