@@ -5,12 +5,13 @@
             <div class = "level">
               <div class = "level-left">
                   <div class = "level-item">
-                    <h1 class="subtitle is-5">Projects / <b>Backlog</b></h1>
+                    <h1 class="subtitle is-5"><a href="/projects/<%= projectID %>/">Projects</a> / <b>Backlog</b></h1>
                   </div>
               </div>
             </div>
           </div>
         <section class =  "section is-main-section is-small">
+          <div><a href="<%=backlogID%>/ticket/newTicket/"><button class ="button is-link">Add Ticket</button</a></div>
           <div class="card has-table">
             <header class = "card-header">
               <p class="card-header-title">
@@ -52,7 +53,7 @@
           </div>
 
         </div>
-        <div><a href="<%=backlogID%>/ticket/newTicket/"><button class ="button is-link">Add Ticket</button</a></div>
+
       </div>
         
         </section>

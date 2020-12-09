@@ -59,7 +59,6 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
 			console.log(err);
 		} else {
             newProject.board.id = createdBoard._id;
-            console.log("Created board with id:" + createdBoard._id);
 
 			// Create a new project and save to database
 			Project.create(newProject, function (err, newlyCreated) {
@@ -88,7 +87,6 @@ router.get("/newProject", middleware.isLoggedIn, (req , res) => {
 router.get("/:id", middleware.checkProjectMembership, async(req, res) => {
     const project = await Project.findById(req.params.id);
     const owner = await User.findById(project.owner.id)
-    console.log(project);
     res.render("project/viewProject",{project, owner});
 
 });
