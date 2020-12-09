@@ -1,5 +1,5 @@
 var express = require("express");
-var router = express.Router();
+var router = express.Router({ mergeParams: true });
 var User = require("../models/user");
 var Ticket = require("../models/ticket");
 var Project = require("../models/project");
@@ -28,7 +28,8 @@ router.get("/:backlog_id/", middleware.isLoggedIn, (req, res) => {
 
             res.render("backlog", {
                 tickets: backlogTickets,
-                backlogID: req.params.backlog_id
+                backlogID: req.params.backlog_id,
+                projectID: req.params.id,
             });
         }
     });
