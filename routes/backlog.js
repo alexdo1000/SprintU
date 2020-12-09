@@ -19,13 +19,13 @@ router.get("/:backlog_id/", middleware.isLoggedIn, (req, res) => {
                     _id: {
                         $in: foundBoard.backlog
                     }
-                }, function(err, docs) {
+                }, function (err, docs) {
                     console.log(docs)
-                    console.log(typeof(docs))
+                    console.log(typeof (docs))
                 });
             }
 
-            res.render("backlog", { tickets: backlogTickets, projectID: req.params.id, backlogID: req.params.backlog_id });
+            res.render("backlog", { tickets: backlogTickets, backlogID: req.params.backlog_id });
         }
     });
 
