@@ -41,7 +41,11 @@
                             <td><%=ticket.description%></td>
                             <td><span class="tag is-rounded story-points"> <%= ticket.points %></td>
                             <td> <span class="tag is-rounded is-link category"><%= ticket.category %></span></td>
-                            <td><span class="tag is-rounded is-info is-light ticket-user"> <%= ticket.assignedUser.charAt(0) %> </span></td>
+                            <td><span class="tag is-rounded is-info is-light ticket-user"> 
+                                <% if (ticket.assignedUser) { %>
+                                    <%= ticket.assignedUser.charAt(0) %> 
+                                <% } %>
+                            </span></td>
                             <td><%=ticket.lane%></td>
                             <td>
                                 <a class="button is-link is-small" href="/projects/<%= projectID%>/backlog/<%=backlogID%>/ticket/<%=ticket._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>

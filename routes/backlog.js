@@ -7,7 +7,7 @@ var Board = require("../models/board");
 var middleware = require("../middleware");
 
 
-router.get("/:backlog_id/", middleware.isLoggedIn, (req, res) => {
+router.get("/:backlog_id/", middleware.checkProjectMembership, (req, res) => {
     foundBoard = Board.findById(req.params.backlog_id, async (err, foundBoard) => {
         if (err) {
             console.log(err);

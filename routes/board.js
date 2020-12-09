@@ -6,7 +6,7 @@ var Project = require("../models/project");
 var Board = require("../models/board");
 var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
 
-router.get("/:board_id/", middleware.isLoggedIn, (req, res) => {
+router.get("/:board_id/", middleware.checkProjectMembership, (req, res) => {
     // Get all tickets from DB
 
     // Get the board from the database, then get ticket bundles, then render the view with the board

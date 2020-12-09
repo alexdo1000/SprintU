@@ -92,14 +92,14 @@ router.get("/:id", middleware.checkProjectMembership, async(req, res) => {
 });
 
 // EDIT PROJECT ROUTE
-router.get("/:id/editProject", (req, res) => {
+router.get("/:id/editProject", middleware.checkProjectMembership, (req, res) => {
     Project.findById(req.params.id, (err, foundProject) => {
         res.render("project/editProject", {project: foundProject});
     });
 });
 
 // UPDATE PROJECT ROUTE
-router.put("/:id",  (req, res) => {
+router.put("/:id", middleware.checkProjectMembership, (req, res) => {
     // find and update correct project
     Project.findByIdAndUpdate(req.params.id, req.body.project, (err, updatedProject) => {
         if(err){
@@ -151,7 +151,7 @@ router.put("/:id",  (req, res) => {
 });
 
 // delete project
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", middleware.checkProjectMembership, async (req, res) => {
     const {id} = req.params;
     await Project.findByIdAndRemove(id);
     res.redirect('/projects');
