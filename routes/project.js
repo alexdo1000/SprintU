@@ -127,10 +127,10 @@ router.put("/:id",  (req, res) => {
             res.redirect("/:id");
         } else {
 
-            var userName="";
+            var userName={};
 
-            if (req.body.addUser) {
-                userName = User.find({
+            if (req.body.addUser.userName) {
+                userName = User.findOne({
                     username: {
                         $eq: req.body.addUser.userName
                     }
@@ -140,13 +140,11 @@ router.put("/:id",  (req, res) => {
                     console.log(typeof (docs))
                 });
                 console.log("hello");
-                req.body.addUser.addUser.push(userName);
-                req.body.addUser.save();
-
-                res.redirect("/projects");
+                updatedProject.members.push(userName);
+                req.body.addUser.save();               
             }
 
-            
+            res.redirect("/projects");
         }
     });
 
