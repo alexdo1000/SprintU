@@ -87,7 +87,21 @@ router.get("/newProject", middleware.isLoggedIn, (req , res) => {
 router.get("/:id", middleware.checkProjectMembership, async(req, res) => {
     const project = await Project.findById(req.params.id);
     const owner = await User.findById(project.owner.id)
-    res.render("project/viewProject",{project, owner});
+
+    members = []
+    if (project.members) {
+        members = await User.find({
+            _id: {
+                $in: project.members
+            }
+        }, function (err, docs) {
+            if (err) {
+                print(err);
+            }
+        });
+    }
+
+    res.render("project/viewProject",{project, owner, members});
 
 });
 

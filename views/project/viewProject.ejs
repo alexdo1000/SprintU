@@ -163,7 +163,9 @@
                                         <div class="dropdown-menu" id="dropdown-menu3" role="menu">
                                             <div class="dropdown-content">
                                                 <p class="dropdown-item"><%= owner.username %></p>
-                                
+                                                <% members.forEach( member => { %>
+                                                    <p class="dropdown-item"><%= member.username %></p>
+                                                <% }); %>
                                             </div>
                                         </div>
                                     </div>
