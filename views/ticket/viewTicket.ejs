@@ -42,7 +42,7 @@
                             <td><span class="tag is-rounded is-info is-light ticket-user"> <%= ticket.assignedUser.charAt(0) %> </span></td>
                             <td><%=ticket.lane%></td>
                             <td>
-                                <form action="/ticket/<%= ticket._id%>?_method=DELETE" method="POST">
+                                <form action="/projects/<%= projectID%>/backlog/<%=backlogID%>/ticket/<%=ticket._id%>?_method=DELETE" method="POST">
                                     <button class="button is-danger"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete Ticket</span></a> 
                                 </form>
                             </td>
@@ -51,7 +51,7 @@
             </div>
             <a class="button is-link is-small" id="back-button" href="/backlog">Go Back</a>
     </section>
-   
+
 </div>
 
 </html>

@@ -81,25 +81,25 @@ router.get("/newTicket", middleware.isLoggedIn, (req, res) => {
 });
 
 // SHOW - SHOWS INFO ABOUT SPECIFIC TICKET
-router.get("/:ticket_id", middleware.isLoggedIn, async (req, res) => {
+router.get("/:id", middleware.isLoggedIn, async (req, res) => {
     const ticket = await Ticket.findById(req.params.id);
-    res.render("ticket/viewTicket", { ticket });
+    res.render("ticket/viewTicket", { ticket, backlogID: req.params.backlog_id, projectID: req.params.id});
 
 });
 
 // EDIT Ticket ROUTE
-router.get("/:ticket_id/editTicket", middleware.isLoggedIn, (req, res) => {
+router.get("/:id/editTicket", middleware.isLoggedIn, (req, res) => {
     Ticket.findById(req.params.id, (err, foundTicket) => {
         res.render("ticket/editTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id });
     });
 });
 
 // UPDATE TICKET ROUTE
-router.put("/:ticket_id", middleware.isLoggedIn, (req, res) => {
+router.put("/:id", middleware.isLoggedIn, (req, res) => {
     // find and update correct ticket
     Ticket.findByIdAndUpdate(req.params.id, req.body.ticket, (err, updatedTicket) => {
         if (err) {
-            res.redirect("/:ticket_id");
+            res.redirect("/:id");
         } else {
             // redirect back to backlog
             urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
@@ -110,8 +110,8 @@ router.put("/:ticket_id", middleware.isLoggedIn, (req, res) => {
 });
 
 // delete ticket
-router.delete("/:ticket_id", middleware.isLoggedIn, async (req, res) => {
-    const { id } = req.params.ticket_id;
+router.delete("/:id", middleware.isLoggedIn, async (req, res) => {
+    const { id } = req.params;
     await Ticket.findByIdAndRemove(id);
     res.redirect('/backlog');
 });
