@@ -114,15 +114,41 @@ router.put("/:id",  (req, res) => {
 
 });
 
-//SHARE PROJECT ROUTE
+// EDIT MEMBER ROUTE
+router.get("/:id/shareProject", (req, res) => {
+    Project.findById(req.params.id, (err, foundProject) => {
+        res.render("project/shareProject", {project: foundProject});
+    });
+});
+
+//UPDATE MEMBER ROUTE
 router.put("/:id",  (req, res) => {
     
-    Project.findByIdAndUpdate(req.params.id, req.body.members, (err, updatedMembers) => {
+    Project.findByIdAndUpdate(req.params.id, req.body.project, (err, updatedProject) => {
         if(err){
             res.redirect("/:id");
         } else {
-            // redirect somewhere (show page)
-            res.redirect("/projects");
+
+            var userName="";
+
+            if (req.body.addUser) {
+                userName = User.find({
+                    username: {
+                        $eq: req.body.addUser.userName
+                    }
+                   
+                }, function (err, docs) {
+                    console.log(docs)
+                    console.log(typeof (docs))
+                });
+                console.log("hello");
+                req.body.addUser.addUser.push(userName);
+                req.body.addUser.save();
+
+                res.redirect("/projects");
+            }
+
+            
         }
     });
 
@@ -136,3 +162,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+

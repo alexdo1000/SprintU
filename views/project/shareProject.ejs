@@ -13,19 +13,16 @@
 </section>
 
 <section class =  "section is-main-section is-small">
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left has-icons-right">
-      <input class="input" type="email" placeholder="Email input">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-      
+  <form action="/projects/shareProject?_method=PUT" method="POST">
+    <div class="field">
+      <label class="label">Username</label>
+        <input class="input" type="text" placeholder="Username input" name="addUser">
     </div>
 
-  </div>
-  <button class="button is-link">Share</button>
+    <button class="button is-link">Share</button>
+  </form>
 </section>
+
 
   <section class =  "section is-main-section is-small">
   <div class="card has-table">
@@ -42,7 +39,7 @@
       <table class = "table is-fullwidth is-striped is-narrow">
         <thead>
           <tr>
-            <th>Email</th>
+            <th>Usernames</th>
           </tr>
         </thead>
         <tbody>
