@@ -113,7 +113,8 @@ router.put("/:id", middleware.isLoggedIn, (req, res) => {
 router.delete("/:id", middleware.isLoggedIn, async (req, res) => {
     const { id } = req.params;
     await Ticket.findByIdAndRemove(id);
-    res.redirect('/backlog');
+    urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
+    res.redirect(urlStr);
 });
 
 module.exports = router;
