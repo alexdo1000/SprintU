@@ -51,7 +51,9 @@
                                     </div></a>
                                 <footer class="card-footer">
                                     <a href="/projects/<%= project._id %>/editProject" class="card-footer-item">Edit</a>
-                                    <a href="/projects/<%= project._id%>?_method=DELETE" method="POST" class="card-footer-item">Delete</a>
+                                    <form action="/projects/<%= project._id%>?_method=DELETE" method="POST">
+                                        <button class="button is-danger"><span class="icon is-small"><i class="far fa-trash-alt"></i></span><span>Delete Project</span></a>
+                                    </form>
                                 </footer>
                             </div>
                         </div>
