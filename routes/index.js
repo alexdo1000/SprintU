@@ -37,7 +37,7 @@ router.get("/login", (req, res) => {
 // handling login logic
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/backlog",
+        successRedirect: "/projects",
         failureRedirect: "/login"
     }), (req, res) => {
 });
@@ -46,7 +46,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout", (req, res) => {
     req.logout();
     req.flash("success", "Logged you out!");
-    res.redirect("/backlog");
+    res.redirect("/login");
 });
 
 module.exports = router;
