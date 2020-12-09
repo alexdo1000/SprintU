@@ -24,7 +24,7 @@ router.post("/register", (req, res) => {
         }
         passport.authenticate("local")(req, res, () => {
             req.flash("success", "Welcome to SprintU " + user.username);
-            res.redirect("/backlog");
+            res.redirect("/projects");
         });
     });
 });

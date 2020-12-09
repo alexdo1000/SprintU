@@ -80,15 +80,15 @@ app.get("/", function (req, res) {
     res.render("landing");
 });
 
-app.get("/backlog", middleware.isLoggedIn, (req, res) => {
-    Ticket.find({}, function (err, allTickets) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("backlog", { tickets: allTickets });
-        }
-    });
-});
+// app.get("/backlog", middleware.isLoggedIn, (req, res) => {
+//     Ticket.find({}, function (err, allTickets) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.render("backlog", { tickets: allTickets });
+//         }
+//     });
+// });
 
 
 app.use("/", indexRoutes);
