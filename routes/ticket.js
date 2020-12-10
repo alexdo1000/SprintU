@@ -81,16 +81,30 @@ router.get("/newTicket", middleware.isLoggedIn, (req, res) => {
 });
 
 // SHOW - SHOWS INFO ABOUT SPECIFIC TICKET
-router.get("/:id", middleware.isLoggedIn, async (req, res) => {
-    const ticket = await Ticket.findById(req.params.id);
-    res.render("ticket/viewTicket", { ticket, backlogID: req.params.backlog_id, projectID: req.params.id});
+router.get("/:ticket_id", middleware.isLoggedIn, async (req, res) => {
+    const ticket = await Ticket.findById(req.params.ticket_id, (err, foundTicket) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("ticket/viewTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id });
+        }
+    });
+    console.log(req.params);
+
+    // const ticket = await Ticket.findById(req.params.ticket_id);
+    // res.render("ticket/viewTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id });
 
 });
 
 // EDIT Ticket ROUTE
 router.get("/:ticket_id/editTicket", middleware.isLoggedIn, (req, res) => {
     Ticket.findById(req.params.ticket_id, (err, foundTicket) => {
-        res.render("ticket/editTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id, ticketID: req.params.ticket_id });
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            res.render("ticket/editTicket", { ticket: foundTicket, projectID: req.params.id, backlogID: req.params.backlog_id, ticketID: req.params.ticket_id });
+        }
     });
 });
 

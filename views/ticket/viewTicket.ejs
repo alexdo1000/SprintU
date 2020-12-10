@@ -48,7 +48,7 @@
                             </span></td>
                             <td><%=ticket.lane%></td>
                             <td>
-                                <a class="button is-link is-small" href="/projects/<%= projectID%>/backlog/<%=backlogID%>/ticket/<%=ticket._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
+                                <a class="button is-link is-small" href="/projects/<%= projectID %>/backlog/<%=backlogID%>/ticket/<%=ticket._id%>/editTicket"><span class="icon is-small"><i class="fa fa-edit"></i></span><span>Edit</span></a>
                             </td>
                             <td>
                                 <form action="/projects/<%= projectID%>/backlog/<%=backlogID%>/ticket/<%=ticket._id%>?_method=DELETE" method="POST">

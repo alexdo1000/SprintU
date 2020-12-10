@@ -1,5 +1,5 @@
 var express = require("express");
-var router = express.Router();
+var router = express.Router({ mergeParams: true });
 var Project = require("../models/project");
 var middleware = require("../middleware"); //this automatically gets index.js from the middleware folder
 var User = require("../models/user");
@@ -162,7 +162,6 @@ router.put("/:id/shareProject", middleware.checkProjectMembership, (req, res) =>
             }
 
             res.redirect("/projects"); 
-            console.log("im here");
         }
     });
    
