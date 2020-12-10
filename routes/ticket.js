@@ -180,11 +180,16 @@ router.put("/:ticket_id", middleware.isLoggedIn, (req, res) => {
 });
 
 // delete ticket
-router.delete("/:id", middleware.isLoggedIn, async (req, res) => {
-    const { id } = req.params;
-    await Ticket.findByIdAndRemove(id);
-    urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
-    res.redirect(urlStr);
+router.delete("/:ticket_id", middleware.isLoggedIn, async (req, res) => {
+    Ticket.findByIdAndDelete(req.params.ticket_id, (err) => {
+        if (err) {
+            console.log(err);
+            res.redirect('back');
+        } else {
+            urlStr = "/projects/" + req.params.id + "/backlog/" + req.params.backlog_id;
+            res.redirect(urlStr);
+        }
+    } )
 });
 
 module.exports = router;
