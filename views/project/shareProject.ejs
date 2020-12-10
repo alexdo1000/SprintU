@@ -28,7 +28,7 @@
   <div class="card has-table">
     <header class = "card-header">
         <p class="card-header-title">
-            Current Users
+            Added Members
         </p>
     </header>
   <div>
@@ -43,7 +43,11 @@
           </tr>
         </thead>
         <tbody>
-          
+          <% members.forEach(member =>{ %>
+            <tr>
+              <td><%=member.username%></td>
+            </tr>
+          <% }); %>
         </tbody>
       </table>
 </section>  
